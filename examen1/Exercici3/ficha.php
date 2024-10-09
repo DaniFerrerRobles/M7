@@ -1,6 +1,6 @@
 <?php
 
-include "index.php";
+include "lista.php";
 
 
 
@@ -13,7 +13,7 @@ if ($nom==$persona['nombre']) {
     
         <div class="col">
         <div class="card shadow-sm">
-        <img class="bd-placeholder-img card-img-top" width="100%" height="225" 
+        <img class="bd-placeholder-img card-img-top" width="150px" height="225" 
             src=" '. ($persona['imagen']) . '"
         >
 
