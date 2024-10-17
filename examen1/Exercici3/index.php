@@ -16,7 +16,7 @@ include 'lista.php';
 foreach ($personas as $persona){
     echo '
     
-        <div class="col">
+        <div class="col w-25 m-4">
         <div class="card shadow-sm">
         <h1>' . ($persona['nombre']) . '</h1>
         <img class="bd-placeholder-img card-img-top" width="100%" height="225" 
