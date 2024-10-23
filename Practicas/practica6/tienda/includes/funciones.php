@@ -1,16 +1,18 @@
-<table class="table table-bordered mt-4">
-    <thead class="thead-dark">
-        <tr>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Disponibilidad</th>
-        </tr>
-    </thead>
-    <tbody>
         <?php
-        include "productos.php";
+        
 
         function generarTablaProductos($productos) {
+            echo '<table class="table table-bordered mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Disponibilidad</th>
+                    <th>Categoria</th>
+
+                </tr>
+            </thead>
+            <tbody>';
             foreach ($productos as $producto) {
                 echo '<tr>
                         <td>' . ucfirst($producto['nombre']) . '</td>
@@ -21,11 +23,16 @@
 
                       '</tr>';
             }   
+            echo '</tbody>
+                </table>';
         }
-        generarTablaProductos($productos);
+        
 
 
         function muestraInfoContacto($nombre, $telefono, $foto){
+
+           
+
             echo '
                 <p>Tu nombre es' . $nombre . '</p>',
 
@@ -35,12 +42,9 @@
             ';
         }
 
-        $nombre = $_POST["nombre"];
-        $telefono = $_POST["telefono"];
-        $foto = $_POST["foto"];
+       
 
-        muestraInfoContacto($nombre, $telefono, $foto)
+       
 
 ?>
-    </tbody>
-</table>
+    

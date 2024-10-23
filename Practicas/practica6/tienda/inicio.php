@@ -3,7 +3,7 @@
  <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Bienvenido a Mercadona /title>
+ <title>Bienvenido a Mercadona </title>
  <link
 href="https: /cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 rel="stylesheet" integrity="sha384-
@@ -14,12 +14,12 @@ crossorigin="anonymous">
 
  <div class="container-fluid">
  <div class="container text-center my-5">
- <h1>Bienvenido a Mercadona /h1>
+ <h1>Bienvenido a Mercadona </h1>
  <p>Por favor, completa el siguiente formulario para continuar tu compra.>/p>
 </div>
 
  <div class="container">
- <form action="index.php" method="POST">
+ <form action="index.php" method="GET">
         <label for="nombre">Nombre:</label><br>
         <input type="text" name="nombre">
         <label for="telefono">Teléfono:</label><br>
