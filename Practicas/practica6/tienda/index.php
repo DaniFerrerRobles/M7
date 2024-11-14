@@ -1,8 +1,8 @@
 <!-- CAPTURO VALORES DEL FORMULARIO -->
  <?php
-$nombre = $_GET['nombre'];
-$telefono = $_GET["telefono"];
-$foto = $_GET["foto"];
+$nombre = $_POST['nombre'];
+$telefono = $_POST["telefono"];
+$foto = $_POST["foto"];
 ?>
 
 <!DOCTYPE html>

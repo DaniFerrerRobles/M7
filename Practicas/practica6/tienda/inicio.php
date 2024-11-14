@@ -19,7 +19,7 @@ crossorigin="anonymous">
 </div>
 
  <div class="container">
- <form action="index.php" method="GET">
+ <form action="index.php" method="POST">
         <label for="nombre">Nombre:</label><br>
         <input type="text" name="nombre">
         <label for="telefono">Teléfono:</label><br>
