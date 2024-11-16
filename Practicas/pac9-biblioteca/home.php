@@ -1,46 +1,35 @@
 <?php
 session_start();
 
-
 // Verifica si el usuario ha iniciado sesión; si no, redirige a login.php.
-
 if (!isset($_SESSION['username'])) {
     header('Location: login.php');
     exit();
 }
 
-// Verifica el rol del usuario
-
-if ($_SESSION['role'] == 'admin') {
-    
-}
-
-// Obtener la lista de libros desde la sesión
-
- $libros = [
+// Lista de libros
+$libros = [
     [
         'titulo' => 'Don Quijote de la Mancha',
         'autor' => 'Miguel de Cervantes',
-        'anio' => 1605
-        "img" => ""
-
+        'anio' => 1605,
+        'img' => 'https://www.marcialpons.es/media/img/portadas/2023/4/18/9788408270881jfif'
     ],
-
     [
         'titulo' => 'La sombra del viento',
         'autor' => 'Carlos Ruiz Zafón',
-        'anio' => 2001
+        'anio' => 2001,
+        'img' => 'https://www.isliada.org/static/images/2018/09/La-sombra-del-viento.jpg'
     ],
-
     [
         'titulo' => 'Cien años de soledad',
         'autor' => 'Gabriel García Márquez',
-        'anio' => 1967
+        'anio' => 1967,
+        'img' => 'https://th.bing.com/th/id/R.b914bed567ef08c11a012c3f40dc8820?rik=gPlclO%2b%2bwpfvng&pid=ImgRaw&r=0'
     ]
-    ];
+];
 
 $_SESSION['libros'] = $libros;
-
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +37,7 @@ $_SESSION['libros'] = $libros;
 <head>
     <meta charset="UTF-8">
     <title>Biblioteca Virtual - Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -57,18 +46,20 @@ $_SESSION['libros'] = $libros;
     <header class="bg-light py-3 mb-4 shadow-sm">
         <div class="container d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img src=<?php $_SESSION['photo'] ?> alt="Foto de perfil" class="w-25 rounded-circle me-3">
+                <img src="<?php echo $_SESSION['photo']; ?>" alt="Foto de perfil" class="w-25 rounded-circle me-3">
                 <div>
-                    <h4 class="m-0">👋 Bienvenido, <?php $_SESSION['username'] ?>!</h4>
-                    <!-- SI ES ADMIN.... -->
-                        <p class="text-muted m-0"><i class="fas fa-user-shield text-success"></i> Admin ✏️</p>
-                   <!-- SINO.... -->
-                        <p class="text-muted m-0">Lector 📚</p>
-                   
+                    <h4 class="m-0">👋 Bienvenido, <?php echo $_SESSION['username']; ?>!</h4>
+                    <?php 
+                    if ($_SESSION['role'] === 'admin') {
+                        echo '<p class="text-muted m-0"><i class="fas fa-user-shield text-success"></i> Admin ✏️</p>';
+                    } else {
+                        echo '<p class="text-muted m-0">Lector 📚</p>';
+                    }
+                    ?>
                 </div>
             </div>
-            <a href="" class="btn btn-warning btn-sm">
-               Cerrar sesión ❌
+            <a href="login.php" class="btn btn-warning btn-sm">
+                Cerrar sesión ❌
             </a>
         </div>
     </header>
@@ -80,48 +71,52 @@ $_SESSION['libros'] = $libros;
         </div>
 
         <!-- Botón de agregar libro (solo visible para el admin) -->
-      
+        <?php 
+        if ($_SESSION['role'] === 'admin') {
+            echo '
             <div class="text-center mb-4">
                 <a href="add_edit_book.php" class="btn btn-outline-success btn-lg">
                     <i class="fas fa-plus-circle me-2"></i>Agregar Nuevo Libro
                 </a>
-            </div>
-        
+            </div>';
+        }
+        ?>
 
         <!-- Mostrar lista de libros en un grid de tarjetas con tamaño uniforme -->
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <?php
+            <?php 
             foreach ($_SESSION['libros'] as $libro) {
-
-            echo '
+                echo '
                 <div class="col">
                     <div class="card h-100 shadow-sm">
-                        <img src="" class="card-img-top" alt="" style="height: 400px; object-fit: cover;">
+                        <img src="' . $libro['img'] . '" class="card-img-top" alt="Imagen de libro" style="height: 400px; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title">'.$libro['titulo']. '</h5>
-                            <p class="card-text"><strong>Autor:</strong> '.$libro['autor']. '</p>
-                            <p class="card-text">'.$libro['anio']. '</p>
-                        </div>
-                      
-                        <!-- Botones de editar y eliminar (solo visible para el admin) -->
-                            <div class="card-footer d-flex justify-content-between">
-                                <a href="" class="btn btn-outline-primary btn-sm">
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
-                                <a href="" class="btn btn-outline-danger btn-sm">
-                                    <i class="fas fa-trash-alt"></i> Eliminar
-                                </a>
-                            </div>                      
-                    </div>
-                </div>      
-            ';
+                            <h5 class="card-title">' . $libro['titulo'] . '</h5>
+                            <p class="card-text"><strong>Autor:</strong> ' . $libro['autor'] . '</p>
+                            <p class="card-text">' . $libro['anio'] . '</p>
+                        </div>';
+                
+                // Botones de editar y eliminar (solo visible para el admin)
+                if ($_SESSION['role'] === 'admin') {
+                    echo '
+                        <div class="card-footer d-flex justify-content-between">
+                            <a href="add_edit_book.php" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a href="delete_book.php" class="btn btn-outline-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i> Eliminar
+                            </a>
+                        </div>';
+                }
+                
+                echo '</div></div>';
             }
             ?>
-
-           
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+

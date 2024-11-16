@@ -3,22 +3,7 @@ session_start();
 
 // Datos de usuario predefinidos (esto normalmente se obtendría de una base de datos).
 $usuarios = [
-    [
-        "nombre" => "admin", 
-        "contrasenya" => "adminpass",
-         "rol" => "admin"],
-    [
-        "nombre" => "Dani",
-         "contrasenya" => "123",
-          "rol" => "lector"
-          ]
-];
-
-
-
-// Datos de usuario predefinidos (esto normalmente se obtendría de una base de datos).
-$usuarios = [
-    ["nombre" => "admin", "contrasenya" => "adminpass", "rol" => "admin"],
+    ["nombre" => "Carlos", "contrasenya" => "456", "rol" => "admin"],
     ["nombre" => "Dani", "contrasenya" => "123", "rol" => "lector"]
 ];
 

@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+if ($_SESSION['role'] != 'admin') {
+    header("Location: home.php");
+    exit();
+}
+
+include 'functions.php';
+
+if (isset($_POST['titulo'], $_POST['autor'], $_POST['anio'], $_POST['img'])) {
+    agregarLibro();
+}
+
+?>
+
 <!-- AQUI VA LA LÓGICA PHP  -->
 <!DOCTYPE html>
 <html lang="es">
@@ -12,8 +28,8 @@
     <header class="bg-light py-3 mb-4 shadow-sm">
         <div class="container d-flex align-items-center justify-content-between">
             <div>
-                <h4 class="m-0">👋 Bienvenido, NOMBRE DE USUARIO</h4>
-                <p class="text-muted m-0"><i class="fas fa-user-shield text-success"></i> ROL ADMIN O ROL LECTOR???</p>
+                <h4 class="m-0">👋 Bienvenido, <?php echo $_SESSION['username'] ?></h4>
+                <p class="text-muted m-0"><i class="fas fa-user-shield text-success"></i><?php echo $_SESSION['role']?></p>
             </div>
             <a href="home.php" class="btn btn-secondary btn-sm">
                 <i class="fas fa-arrow-left"></i> Volver a la Biblioteca
@@ -38,15 +54,16 @@
                 <label for="autor">Autor</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="imagen" name="imagen" value="" placeholder="URL de la Imagen">
+                <input type="text" class="form-control" id="anio" name="anio" value="" placeholder="Anio" required>
+                <label for="autor">Año</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="imagen" name="img" value="" placeholder="URL de la Imagen">
                 <label for="imagen">URL de la Imagen</label>
             </div>
-            <div class="form-floating mb-4">
-                <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" style="height: 150px;"><?= $descripcion ?></textarea>
-                <label for="descripcion">Descripción</label>
-            </div>
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg"></button>
+                <button type="submit" class="btn btn-primary btn-lg">Agregar</button>
             </div>
         </form>
     </div>
