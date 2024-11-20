@@ -1,35 +1,14 @@
 <?php
 session_start();
 
+include 'functions.php';
 // Verifica si el usuario ha iniciado sesión; si no, redirige a login.php.
 if (!isset($_SESSION['username'])) {
     header('Location: login.php');
     exit();
 }
 
-// Lista de libros
-$libros = [
-    [
-        'titulo' => 'Don Quijote de la Mancha',
-        'autor' => 'Miguel de Cervantes',
-        'anio' => 1605,
-        'img' => 'https://www.marcialpons.es/media/img/portadas/2023/4/18/9788408270881jfif'
-    ],
-    [
-        'titulo' => 'La sombra del viento',
-        'autor' => 'Carlos Ruiz Zafón',
-        'anio' => 2001,
-        'img' => 'https://www.isliada.org/static/images/2018/09/La-sombra-del-viento.jpg'
-    ],
-    [
-        'titulo' => 'Cien años de soledad',
-        'autor' => 'Gabriel García Márquez',
-        'anio' => 1967,
-        'img' => 'https://th.bing.com/th/id/R.b914bed567ef08c11a012c3f40dc8820?rik=gPlclO%2b%2bwpfvng&pid=ImgRaw&r=0'
-    ]
-];
-
-$_SESSION['libros'] = $libros;
+$libros = $_SESSION['libros'];
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +64,7 @@ $_SESSION['libros'] = $libros;
         <!-- Mostrar lista de libros en un grid de tarjetas con tamaño uniforme -->
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             <?php 
-            foreach ($_SESSION['libros'] as $libro) {
+            foreach ($libros as $libro) {
                 echo '
                 <div class="col">
                     <div class="card h-100 shadow-sm">
@@ -103,16 +82,23 @@ $_SESSION['libros'] = $libros;
                             <a href="add_edit_book.php" class="btn btn-outline-primary btn-sm">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
-                            <a href="delete_book.php" class="btn btn-outline-danger btn-sm">
+                            <a href="delete_book.php?id='. $libro['id'].'" class="btn btn-outline-danger btn-sm">
                                 <i class="fas fa-trash-alt"></i> Eliminar
                             </a>
+
                         </div>';
                 }
                 
                 echo '</div></div>';
             }
+
+
+            var_dump($_SESSION['libros'])
             ?>
         </div>
+
+
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

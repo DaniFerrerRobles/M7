@@ -9,7 +9,7 @@ if ($_SESSION['role'] != 'admin') {
 include 'functions.php';
 
 if (isset($_POST['titulo'], $_POST['autor'], $_POST['anio'], $_POST['img'])) {
-    agregarLibro();
+    agregarLibro($_POST['titulo'], $_POST['autor'], $_POST['anio'], $_POST['img']);
 }
 
 ?>
