@@ -91,9 +91,6 @@ $libros = $_SESSION['libros'];
                 
                 echo '</div></div>';
             }
-
-
-            var_dump($_SESSION['libros'])
             ?>
         </div>
 
