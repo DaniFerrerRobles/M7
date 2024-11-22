@@ -37,8 +37,8 @@ $libros = $_SESSION['libros'];
                     ?>
                 </div>
             </div>
-            <a href="login.php" class="btn btn-warning btn-sm">
-                Cerrar sesión ❌
+            <a href="logout.php" class="btn btn-warning btn-sm">
+                Cerrar sesiónn❌
             </a>
         </div>
     </header>

@@ -5,21 +5,21 @@ session_start();
 // Lista de libros
 $libros = [
     [
-        'id' => 1,
+        'id' => 0,
         'titulo' => 'Don Quijote de la Mancha',
         'autor' => 'Miguel de Cervantes',
         'anio' => 1605,
         'img' => 'https://www.marcialpons.es/media/img/portadas/2023/4/18/9788408270881jfif'
     ],
     [
-        'id' => 2,
+        'id' => 1,
         'titulo' => 'La sombra del viento',
         'autor' => 'Carlos Ruiz Zafón',
         'anio' => 2001,
         'img' => 'https://www.isliada.org/static/images/2018/09/La-sombra-del-viento.jpg'
     ],
     [
-        'id' => 3,
+        'id' => 2,
         'titulo' => 'Cien años de soledad',
         'autor' => 'Gabriel García Márquez',
         'anio' => 1967,
@@ -27,12 +27,18 @@ $libros = [
     ]
 ];
 
+
 if(!isset($_SESSION['libros'])){
     $_SESSION['libros'] = $libros;
+   
 } 
 
 function agregarLibro($titulo, $autor, $anio, $img){
+
+    $id = count($_SESSION['libros']);
+
     $libroNuevo = [
+        'id' => $id,
         'titulo' => $titulo,
         'autor' => $autor,
         'anio' => $anio,
@@ -42,9 +48,16 @@ function agregarLibro($titulo, $autor, $anio, $img){
     array_push($_SESSION['libros'],$libroNuevo);
 
     header('Location: home.php');
-    exit();    
+
+  
 }
 
-function eliminarLibro(){
-    
+function eliminarLibro($id){
+    foreach ($_SESSION['libros'] as $libro) {
+        if ($libro['id'] == $id) {
+            
+            unset($_SESSION['libros'][$id]);
+            array_values($_SESSION['libros']);
+        }
+    }
 }
