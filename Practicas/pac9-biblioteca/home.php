@@ -77,16 +77,19 @@ $libros = $_SESSION['libros'];
                 
                 // Botones de editar y eliminar (solo visible para el admin)
                 if ($_SESSION['role'] === 'admin') {
-                    echo '
-                        <div class="card-footer d-flex justify-content-between">
-                            <a href="add_edit_book.php" class="btn btn-outline-primary btn-sm">
-                                <i class="fas fa-edit"></i> Editar
-                            </a>
-                            <a href="delete_book.php?id='. $libro['id'].'" class="btn btn-outline-danger btn-sm">
-                                <i class="fas fa-trash-alt"></i> Eliminar
-                            </a>
-
-                        </div>';
+                    if ($_SESSION['role'] === 'admin') {
+                        echo '
+                            <div class="card-footer d-flex justify-content-between">
+                                <a href="add_edit_book.php?id=' . $libro['id'] . '&titulo=' . $libro['titulo'] . '&autor=' . $libro['autor'] . '&anio=' . $libro['anio'] . '&img=' . $libro['img'] . '" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+                    
+                                <a href="delete_book.php?id=' . $libro['id'] . '" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </a>
+                            </div>';
+                    }
+                    
                 }
                 
                 echo '</div></div>';

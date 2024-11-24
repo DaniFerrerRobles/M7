@@ -12,6 +12,13 @@ if (isset($_POST['titulo'], $_POST['autor'], $_POST['anio'], $_POST['img'])) {
     agregarLibro($_POST['titulo'], $_POST['autor'], $_POST['anio'], $_POST['img']);
 }
 
+
+if(isset($_GET['id'], $_GET['titulo'], $_GET['autor'], $_GET['anio'], $_GET['img'])){
+    editarLibro($_GET['id'], $_GET['titulo'], $_GET['autor'], $_GET['anio'], $_GET['img']);
+    header('Location: home.php'); 
+    exit;
+}
+
 ?>
 
 <!-- AQUI VA LA LÓGICA PHP  -->

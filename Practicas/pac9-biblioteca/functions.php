@@ -47,10 +47,22 @@ function agregarLibro($titulo, $autor, $anio, $img){
     
     array_push($_SESSION['libros'],$libroNuevo);
 
-    header('Location: home.php');
-
-  
+    header('Location: home.php');  
 }
+
+
+
+function editarLibro($id, $titulo, $autor, $anio, $imagen) {
+    if (isset($_SESSION['libros'][$id])) {
+        $_SESSION['libros'][$id] = [
+            "titulo" => $titulo,
+            "autor" => $autor,
+            "anio" => $anio,
+            "imagen" => $imagen
+        ];
+    }
+}
+
 
 function eliminarLibro($id){
     foreach ($_SESSION['libros'] as $libro) {
