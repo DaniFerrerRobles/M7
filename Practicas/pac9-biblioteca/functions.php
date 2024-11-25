@@ -60,6 +60,8 @@ function editarLibro($id, $titulo, $autor, $anio, $imagen) {
             "anio" => $anio,
             "imagen" => $imagen
         ];
+
+        header('Location: home.php');  
     }
 }
 
