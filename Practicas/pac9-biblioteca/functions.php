@@ -55,6 +55,7 @@ function agregarLibro($titulo, $autor, $anio, $img){
 function editarLibro($id, $titulo, $autor, $anio, $imagen) {
     if (isset($_SESSION['libros'][$id])) {
         $_SESSION['libros'][$id] = [
+            "id"=>$id,
             "titulo" => $titulo,
             "autor" => $autor,
             "anio" => $anio,
@@ -67,11 +68,7 @@ function editarLibro($id, $titulo, $autor, $anio, $imagen) {
 
 
 function eliminarLibro($id){
-    foreach ($_SESSION['libros'] as $libro) {
-        if ($libro['id'] == $id) {
-            
-            unset($_SESSION['libros'][$id]);
-            array_values($_SESSION['libros']);
+        array_splice($_SESSION['libros'], $id);
+
         }
-    }
-}
+    

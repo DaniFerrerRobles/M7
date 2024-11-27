@@ -13,10 +13,11 @@ if (isset($_POST['titulo'], $_POST['autor'], $_POST['anio'], $_POST['img'])) {
 }
 
 
-if(isset($_GET['id'], $_GET['titulo'], $_GET['autor'], $_GET['anio'], $_GET['img'])){
-    editarLibro($_GET['id'], $_POST['titulo'], $_POST['autor'], $_POST['anio'], $_POST['img']);
-    exit;
-}
+$_GET['id'] = $id;
+
+if(isset($id, $_POST['titulo'], $_POST['autor'], $_POST['anio'], $_POST['img'])){
+    editarLibro($id, $_POST['titulo'], $_POST['autor'], $_POST['anio'], $_POST['img']);
+    }
 
 ?>
 
@@ -52,20 +53,20 @@ if(isset($_GET['id'], $_GET['titulo'], $_GET['autor'], $_GET['anio'], $_GET['img
         <!-- Formulario para agregar o editar libro. DEPENDIENDO DE SI SE AÑADE O SE EDITA CAMBIARÁN COSA DEL FORMULARIO, USA TERNARIOS SON MUY ÚTILES-->
         <form method="POST" class="mx-auto" style="max-width: 600px;">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="titulo" name="titulo" value="" placeholder="Título" required>
+                <input type="text" class="form-control" id="titulo" name="titulo" value= "<?php echo isset($id) ? $_SESSION['libros'][$id]['titulo'] : ''; ?>" placeholder="Título" required>
                 <label for="titulo">Título</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="autor" name="autor" value="" placeholder="Autor" required>
+                <input type="text" class="form-control" id="autor" name="autor" value="<?php echo isset($id) ? $_SESSION['libros'][$id]['autor'] : ''; ?>" placeholder="Autor" required>
                 <label for="autor">Autor</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="anio" name="anio" value="" placeholder="Anio" required>
+                <input type="text" class="form-control" id="anio" name="anio" value="<?php echo isset($id) ? $_SESSION['libros'][$id]['anio'] : ''; ?>" placeholder="Anio" required>
                 <label for="autor">Año</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="imagen" name="img" value="" placeholder="URL de la Imagen">
+                <input type="text" class="form-control" id="imagen" name="img" value="<?php echo isset($id) ? $_SESSION['libros'][$id]['img'] : ''; ?>" placeholder="URL de la Imagen">
                 <label for="imagen">URL de la Imagen</label>
             </div>
             <div class="d-grid">

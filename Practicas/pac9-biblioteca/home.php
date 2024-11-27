@@ -80,7 +80,7 @@ $libros = $_SESSION['libros'];
                     if ($_SESSION['role'] === 'admin') {
                         echo '
                             <div class="card-footer d-flex justify-content-between">
-                                <a href="add_edit_book.php?id=' . $libro['id'] . '&titulo=' . $libro['titulo'] . '&autor=' . $libro['autor'] . '&anio=' . $libro['anio'] . '&img=' . $libro['img'] . '" class="btn btn-outline-primary btn-sm">
+                                <a href="add_edit_book.php?id=' . $libro['id'] . '" class="btn btn-outline-primary btn-sm">
                                     <i class="fas fa-edit"></i> Editar
                                 </a>
                     
