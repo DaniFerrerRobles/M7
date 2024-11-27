@@ -13,7 +13,6 @@ $id =$_GET['id'];
 
 if(isset($_SESSION['libros'][$id])){
     eliminarLibro($id);
-    header('Location: home.php'); 
     exit;
 }
 

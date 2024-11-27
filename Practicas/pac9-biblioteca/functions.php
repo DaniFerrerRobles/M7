@@ -67,8 +67,12 @@ function editarLibro($id, $titulo, $autor, $anio, $imagen) {
 }
 
 
-function eliminarLibro($id){
-        array_splice($_SESSION['libros'], $id);
+function eliminarLibro($id) {
+    if (isset($_SESSION['libros'][$id])) {
+        unset($_SESSION['libros'][$id]);
+        header('Location: home.php');  
 
-        }
-    
+    }
+}
+
+?>
