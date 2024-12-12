@@ -88,13 +88,13 @@ class Productee {
         return $this->preu . "€";
     }    
 }
+$productos = [
+    $producte1 = new Producte("camiseta", "20"),
+    $producte2 = new Producte("pantalon", "89"),
+    $producte3 = new Producte("botas", "62"),
+    $producte4 = new Producte("pelota", "70"),    
+];
 
-$producte1 = new Producte("camiseta", "20");
-$producte2 = new Producte("pantalon", "89");
-$producte3 = new Producte("botas", "62");
-$producte4 = new Producte("pelota", "70");
-
-$productos = [$producte1, $producte2, $producte3, $producte4];
 
 echo "<table>
         <tr>
@@ -110,4 +110,50 @@ foreach ($productos as $producto) {
 }
     </table>";
 }
+
+
+
+class Animal {
+    public string $nom;
+    public int $tipus;
+
+    public function __construct($nom, $tipus) {
+        $this->nom = $nom;
+        $this->tipus = $tipus;
+    }
+
+    public function descriure(): string {
+        return "Hola, " . $this->nom ."Ets " . $this->tipus . ".";
+    }
+}
+
+if (isset($_POST['nom']) && isset($_POST['edat'])) {
+    $nom = $_POST['nom'];
+    $edat = $_POST['tipus'];
+
+    $animal1 = new Persona($nom, $tipus);
+
+    echo $animal1->benvinguda();
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <h2>Formulario</h2>
+    <form method="POST">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required><br><br>
+
+        <label for="edat">tipus:</label>
+        <input type="text" id="tipus" name="tipus" required><br><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
