@@ -127,13 +127,13 @@ class Animal {
     }
 }
 
-if (isset($_POST['nom']) && isset($_POST['edat'])) {
+if (isset($_POST['nom']) && isset($_POST['tipus'])) {
     $nom = $_POST['nom'];
-    $edat = $_POST['tipus'];
+    $tipus = $_POST['tipus'];
 
-    $animal1 = new Persona($nom, $tipus);
+    $animal1 = new Animal($nom, $tipus);
 
-    echo $animal1->benvinguda();
+    echo $animal1->descriure();
 }
 ?>
 
