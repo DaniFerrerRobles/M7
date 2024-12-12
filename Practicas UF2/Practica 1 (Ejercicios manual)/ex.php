@@ -150,7 +150,7 @@ if (isset($_POST['nom']) && isset($_POST['edat'])) {
         <label for="nom">Nom:</label>
         <input type="text" id="nom" name="nom" required><br><br>
 
-        <label for="edat">tipus:</label>
+        <label for="edat">tipuus:</label>
         <input type="text" id="tipus" name="tipus" required><br><br>
 
         <input type="submit" value="Enviar">
