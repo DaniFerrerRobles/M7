@@ -90,9 +90,9 @@ $biblioteca = unserialize($_SESSION['biblioteca']);
             <div class="card h-100">
                 <img src= <? $llibre->foto; ?> class="card-img-top" alt="Imatge">
                 <div class="card-body">
-                    <h5 class="card-title"><? $llibre->titol; ?></h5>
-                    <p class="card-text">Autor: <? $llibre->autor; ?></p>
-                    <p class="card-text">Any: <? $llibre->anyPublicacio; ?></p>
+                    <h5 class="card-title"><? $llibre->this.$titol; ?></h5>
+                    <p class="card-text">Autor: <? $llibre->this.$autor; ?></p>
+                    <p class="card-text">Any: <? $llibre->$anyPublicacio; ?></p>
                 </div>
             </div>
         </div>
