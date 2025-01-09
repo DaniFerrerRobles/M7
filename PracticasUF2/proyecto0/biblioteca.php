@@ -1,38 +1,29 @@
 <?php
-session_start();
 
 class Biblioteca {
-    public $llibres = [];
+    public $llibres = [];       
 
-    public function __construct() {
-        if (!isset($_SESSION['llibres'])) {
-            $_SESSION['llibres'] = [];
-        } else {
-            $this->llibres = $_SESSION['llibres'];
-        }
-    }
-
-    public function afegirLlibre($llibre) {
-        array_push($this->llibres, $llibre);
-        $_SESSION['llibres'] = $this->llibres;
+    public function afegirLlibre($llibreDelUsuario) {
+        $this->llibres[] = $llibreDelUsuario;
     }
 
     public function mostrarLlibres() {
-        $detallsLlibres = [];
+        $infoLlibres = [];
         foreach ($this->llibres as $llibre) {
-            $detallsLlibres[] = $llibre->detallsLlibre();
+            $infoLlibres[] = $llibre->detallsLlibre();
         }
-        return $detallsLlibres;
+        return $infoLlibres;
     }
 
-    public function cercarLlibrePelTitol($text) {
+    public function cercarLlibrePelTitol($tituloQueBuscaElUsuario) {
         $resultats = [];
         foreach ($this->llibres as $llibre) {
-            if (stripos($llibre->titol, $text) == true) {
+            if (stripos($llibre->titol, $tituloQueBuscaElUsuario) !== false) {
                 $resultats[] = $llibre->detallsLlibre();
             }
         }
         return $resultats;
     }
 }
+
 ?>

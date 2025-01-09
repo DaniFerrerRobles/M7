@@ -9,17 +9,25 @@ if (!isset($_SESSION['biblioteca'])) {
 
 $biblioteca = unserialize($_SESSION['biblioteca']);
 
-    if (isset($_POST['afegir'])) {
-        $titol = $_POST['titol'];
-        $autor = $_POST['autor'];
-        $anyPublicacio = $_POST['anyPublicacio'];
-        $foto = $_POST['foto'];
-        $llibre = new Llibre($titol, $autor, $anyPublicacio, $foto);
-        $biblioteca->afegirLlibre($llibre);
-    } elseif (isset($_POST['cercar'])) {
-        $titolCercar = $_POST['titolCercar'];
-        $resultats = $biblioteca->cercarLlibrePerTitol($titolCercar);
+if (isset($_POST['afegir'])) {
+    $titol = $_POST['titol'];
+    $autor = $_POST['autor'];
+    $anyPublicacio = $_POST['anyPublicacio'];
+    $foto = $_POST['foto'];
+
+    $llibreDelUsuario = new Llibre($titol, $autor, $anyPublicacio, $foto);
+    $biblioteca->afegirLlibre($llibreDelUsuario);
+
+    $_SESSION['biblioteca'] = serialize($biblioteca);
+
+} elseif (isset($_POST['cercar'])) {
+    $titolCercar = $_POST['titolCercar'];
+    $resultatBusqueda = $biblioteca->cercarLlibrePelTitol($titolCercar); 
+
+    foreach ($resultatBusqueda as $llibre) {
+        echo $llibre;
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -82,24 +90,12 @@ $biblioteca = unserialize($_SESSION['biblioteca']);
     </div>
 
     <h2 class="mt-5">Biblioteca</h2>
-        <div class="row">
-        <div class="row">
-        <div class="row">
-    <?php foreach ($biblioteca->mostrarLlibres() as $llibre){ ?>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src= <? $llibre->foto; ?> class="card-img-top" alt="Imatge">
-                <div class="card-body">
-                    <h5 class="card-title"><? $llibre->this.$titol; ?></h5>
-                    <p class="card-text">Autor: <? $llibre->this.$autor; ?></p>
-                    <p class="card-text">Any: <? $llibre->$anyPublicacio; ?></p>
-                </div>
-            </div>
-        </div>
-    <?php } ?>
-</div>
-
-</div>
-</div>
+    <div class="row">
+        <?php 
+        foreach ($biblioteca->mostrarLlibres() as $llibre) { 
+            echo $llibre;
+        }
+        ?>
+    </div>
 </body>
-</html> 
+</html>
