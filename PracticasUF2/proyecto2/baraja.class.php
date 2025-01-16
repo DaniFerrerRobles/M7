@@ -1,17 +1,19 @@
 <?php
+include 'carta.class.php';
 
 class Baraja {
     public $conjunto_cartas = [];
 
     public function crea_baraja() {
-        $coloroTipoCartas = ['amarillo', 'rojo', 'verde', 'azul', 'reverse', 'skip', 'picker'];
-        $numerosCartas = range(1, 9);
+        $idx = 0;
+        foreach (['red', 'yellow', 'blue', 'green'] as $color) {
+            for ($i = 0; $i <= 9; $i++) {
 
-        $identificadorCarta = 0;
-        foreach ($coloroTipoCartas as $coloroTipoCarta) {
-            foreach ($numerosCartas as $numeroCarta) {
-                $this->conjunto_cartas[] = new Carta($coloroTipoCarta, $numeroCarta, $identificadorCarta++);
+                $this->conjunto_cartas[] = new Carta($color, $i, $idx++);
             }
+            $this->conjunto_cartas[] = new Carta($color, 'reverse', $i);
+            $this->conjunto_cartas[] = new Carta($color, 'skip',$i);
+            $this->conjunto_cartas[] = new Carta($color, '+2',$i);
         }
     }
 
@@ -23,6 +25,7 @@ class Baraja {
         foreach ($this->conjunto_cartas as $carta) {
            $carta->pinta_carta();
         }
+        var_dump($this->conjunto_cartas);
     }
 
     public function pinta_baraja_girada() {
