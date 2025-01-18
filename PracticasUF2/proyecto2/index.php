@@ -9,27 +9,24 @@ if (isset($_POST)) {
 $baraja = new Baraja();
 
 $baraja->crea_baraja();
+$baraja->mezcla_baraja();
 
-$baraja->mezcla();
+$baraja->pinta_baraja();
 
-
-foreach ($baraja->conjunto_cartas as $carta) {
-    $carta->pinta_carta();
+for ($jugador = 0; $jugador <= $numeroDeJugadors; $jugador++) {
+    $jugadores[$jugador] = array_splice($baraja->conjunto_cartas, 0, $numeroDeCartes);
 }
-var_dump($baraja->conjunto_cartas);
 
+$cartaInicial = array_shift($baraja->conjunto_cartas);
+echo "<p>Carta sobre la mesa: <img src='cartas_uno/" . $cartaInicial->numeroCarta . "_" 
+    . $cartaInicial->coloroTipoCarta . ".png' alt='Carta inicial' /></p>";
 
-
-// for ($jugador = 0; $jugador < $numeroDeJugadors; $jugador++) {
-//     $jugadores[] = array_splice($baraja->conjunto_cartas, 0, $numeroDeCartes);
-
-//     echo "<p>Carta sobre la taula: <img src='cartas_uno/" . $baraja->conjunto_cartas[$Jugadores]->numeroCarta . "_"
-//     . $baraja->conjunto_cartas[$jugadores]->coloroTipoCarta . ".png' alt='Carta' /></p>";
-// }
-
-// foreach ($jugadores as $jugador) {
-//     echo "<h3>Jugador " . ($jugador + 1) . ":</h3>";
-
-// }
-
+    foreach ($jugadores as $identificadorDelJugador => $manoDelJugador) {
+        echo "<h3>Jugador " . $identificadorDelJugador + 1 . ":</h3>";
+        
+        foreach ($manoDelJugador as $carta) {
+            echo "<img src='cartas_uno/" . $carta->numero . "_"
+                . $carta->color . ".png' alt='Carta' style='width: 100px; margin: 5px;'/>";
+        }
+    }    
 ?>
