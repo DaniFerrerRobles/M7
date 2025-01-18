@@ -18,7 +18,7 @@ $baraja->mezcla_baraja();
 
 $baraja->pinta_baraja();
 
-for ($jugador = 0; $jugador <= $numeroDeJugadors; $jugador++) {
+for ($jugador = 1; $jugador <= $numeroDeJugadors; $jugador++) {
     $jugadores[$jugador] = array_splice($baraja->conjunto_cartas, 0, $numeroDeCartes);
 }
 
@@ -27,7 +27,7 @@ echo "<p>Carta sobre la mesa: <img src='cartas_uno/" . $cartaInicial->numeroCart
     . $cartaInicial->coloroTipoCarta . ".png' alt='Carta inicial' /></p>";
 
     foreach ($jugadores as $jugador => $manoDelJugador) {
-        echo "<h3>Jugador " . ($jugador + 1) . ":</h3>";
+        echo "<h3>Jugador " . ($jugador) . ":</h3>";
         
         foreach ($manoDelJugador as $carta) {
             $carta->pinta_carta();
