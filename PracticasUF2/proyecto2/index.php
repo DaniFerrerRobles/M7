@@ -8,7 +8,12 @@ if (isset($_POST)) {
 
 $baraja = new Baraja();
 
+$cartaInicial = new Carta($coloroTipoCarta, $numeroCarta, $idCarta);
+
+$cartaInicial = new Carta($coloroTipoCarta, $numeroCarta, $idCarta);
+
 $baraja->crea_baraja();
+
 $baraja->mezcla_baraja();
 
 $baraja->pinta_baraja();
@@ -22,11 +27,10 @@ echo "<p>Carta sobre la mesa: <img src='cartas_uno/" . $cartaInicial->numeroCart
     . $cartaInicial->coloroTipoCarta . ".png' alt='Carta inicial' /></p>";
 
     foreach ($jugadores as $jugador => $manoDelJugador) {
-        echo "<h3>Jugador " . $jugador + 1 . ":</h3>";
+        echo "<h3>Jugador " . ($jugador + 1) . ":</h3>";
         
         foreach ($manoDelJugador as $carta) {
-            echo "<img src='cartas_uno/" . $carta->numeroDeCarta . "_"
-                . $carta->$colorDeCarta . ".png' alt='Carta' style='width: 100px; margin: 5px;'/>";
+            $carta->pinta_carta();
         }
     }    
 ?>
