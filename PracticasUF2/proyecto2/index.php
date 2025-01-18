@@ -21,12 +21,12 @@ $cartaInicial = array_shift($baraja->conjunto_cartas);
 echo "<p>Carta sobre la mesa: <img src='cartas_uno/" . $cartaInicial->numeroCarta . "_" 
     . $cartaInicial->coloroTipoCarta . ".png' alt='Carta inicial' /></p>";
 
-    foreach ($jugadores as $identificadorDelJugador => $manoDelJugador) {
-        echo "<h3>Jugador " . $identificadorDelJugador + 1 . ":</h3>";
+    foreach ($jugadores as $jugador => $manoDelJugador) {
+        echo "<h3>Jugador " . $jugador + 1 . ":</h3>";
         
         foreach ($manoDelJugador as $carta) {
-            echo "<img src='cartas_uno/" . $carta->numero . "_"
-                . $carta->color . ".png' alt='Carta' style='width: 100px; margin: 5px;'/>";
+            echo "<img src='cartas_uno/" . $carta->numeroDeCarta . "_"
+                . $carta->$colorDeCarta . ".png' alt='Carta' style='width: 100px; margin: 5px;'/>";
         }
     }    
 ?>
