@@ -8,7 +8,7 @@ if (isset($_POST)) {
 
 $baraja = new Baraja();
 
-$cartaInicial = new Carta($coloroTipoCarta, $numeroCarta, $idCarta);
+$carta = new Carta($coloroTipoCarta, $numeroCarta, $idCarta);
 
 $cartaInicial = new Carta($coloroTipoCarta, $numeroCarta, $idCarta);
 
