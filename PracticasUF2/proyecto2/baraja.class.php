@@ -13,7 +13,7 @@ class Baraja {
             }
             $this->conjunto_cartas[] = new Carta($colorDeCarta, 'reverse', $numeroDeLaCarta);
             $this->conjunto_cartas[] = new Carta($colorDeCarta, 'skip',$numeroDeLaCarta);
-            $this->conjunto_cartas[] = new Carta($colorDeCarta, '+2',$numeroDeLaCarta);
+            $this->conjunto_cartas[] = new Carta($colorDeCarta, 'picker',$numeroDeLaCarta);
         }
     }
 

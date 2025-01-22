@@ -8,9 +8,9 @@ if (isset($_POST)) {
 
 $baraja = new Baraja();
 
-$cartaDelJugador = new Carta($coloroTipoCarta, $numeroCarta, $idCarta);
+$cartaDelJugador = new Carta($color, $numeroTipoCarta, $idCarta);
 
-$cartaInicial = new Carta($coloroTipoCarta, $numeroCarta, $idCarta);
+$cartaInicial = new Carta($color, $numeroTipoCarta, $idCarta);
 
 $baraja->crea_baraja();
 
@@ -23,14 +23,14 @@ for ($jugador = 1; $jugador <= $numeroDeJugadors; $jugador++) {
 }
 
 $cartaInicial = array_shift($baraja->conjunto_cartas);
-echo "<p>Carta sobre la mesa: <img src='cartas_uno/" . $cartaInicial->numeroCarta . "_" 
-    . $cartaInicial->coloroTipoCarta . ".png' alt='Carta inicial' /></p>";
+echo "<p>Carta sobre la mesa: <img src='cartas_uno/" . $cartaInicial->numeroTipoCarta . "_" 
+    . $cartaInicial->color . ".png' alt='Carta inicial' /></p>";
 
     foreach ($jugadores as $jugador => $cartasDelJugador) {
         echo "<h3>Jugador " . ($jugador) . ":</h3>";
         
         foreach ($cartasDelJugador as $cartaDelJugador) {
-            $cartaDelJugador->pinta_carta();
+            $cartaDelJugador->pinta_carta_link();
         }
     }    
 ?>
