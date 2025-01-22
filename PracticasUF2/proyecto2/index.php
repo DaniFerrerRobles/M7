@@ -23,8 +23,8 @@ for ($jugador = 1; $jugador <= $numeroDeJugadors; $jugador++) {
 }
 
 $cartaInicial = array_shift($baraja->conjunto_cartas);
-echo "<p>Carta sobre la mesa: <img src='cartas_uno/" . $cartaInicial->numeroTipoCarta . "_" 
-    . $cartaInicial->color . ".png' alt='Carta inicial' /></p>";
+
+    $cartaInicial->pinta_carta;
 
     foreach ($jugadores as $jugador => $cartasDelJugador) {
         echo "<h3>Jugador " . ($jugador) . ":</h3>";
