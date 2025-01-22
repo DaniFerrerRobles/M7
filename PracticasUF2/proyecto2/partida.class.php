@@ -34,25 +34,19 @@ class Partida {
         $manoActual = $jugadorActual->mano;
 
         foreach ($manoActual as $carta) {
-            if ($this->es_jugada_valida($carta)) {
-                $carta_jugada = $carta;
-                $jugadorActual->eliminar_carta($carta);
-                $this->cartaEnMesa = $carta;
-                echo "<p>El jugador " . ($this->turno + 1) . " jugó:</p>";
-                $carta->pinta_carta();
-                break;
-            }
-        }
+            if($_GET['numeroTipocarta'] || $_GET['color'] == $carta->$numeroDeLaCarta || $carta->$colorDeCarta){
+                $cartaEnMesa = $carta;
 
-        // Si no puede jugar, roba una carta
-        if (!$carta_jugada) {
-            $nuevaCartaRobada = array_shift($baraja->conjunto_cartas);
-            $jugadorActual->afegir_carta($nuevaCartaRobada);
+                $jugadorActual = array_shift($carta);
+            } else{
+                $nuevaCartaRobada = array_shift($baraja->conjunto_cartas);
+                $jugadorActual->afegir_carta($nuevaCartaRobada);                
+            }
+            }
         }
 
         if (count($jugadorActual->cartas) == 0) {
             echo "El jugador " . $jugadorActual . " ha ganado";
         }
     }
-}
 ?>
