@@ -37,10 +37,10 @@ class Partida {
             if($_GET['numeroTipocarta'] || $_GET['color'] == $carta->$numeroDeLaCarta || $carta->$colorDeCarta){
                 $cartaEnMesa = $carta;
 
-                $jugadorActual = array_shift($carta);
+                $jugadorActual = eliminar_carta($carta);
             } else{
                 $nuevaCartaRobada = array_shift($baraja->conjunto_cartas);
-                $jugadorActual->afegir_carta($nuevaCartaRobada);                
+                $jugadorActual = afegir_carta($nuevaCartaRobada);                
             }
             }
         }
