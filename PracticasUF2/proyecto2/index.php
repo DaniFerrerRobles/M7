@@ -24,7 +24,8 @@ for ($jugador = 1; $jugador <= $numeroDeJugadors; $jugador++) {
 
 $cartaInicial = array_shift($baraja->conjunto_cartas);
 
-    $cartaInicial->pinta_carta;
+echo '<h1>Carta En Mesa</h1>';
+$cartaInicial->pinta_carta();
 
     foreach ($jugadores as $jugador => $cartasDelJugador) {
         echo "<h3>Jugador " . ($jugador) . ":</h3>";
