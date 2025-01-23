@@ -6,46 +6,46 @@ include 'jugador.class.php';
 class Partida {
     public $numeroDeJugadores;
     public $numeroDeCartas;
-    public $turno = 0;
+    public $turno;
     public $baraja;
     public $cartaEnMesa;
-    public $arrayJugadores = [];
+    public $arrayJugadores;
     public $sentido;
 
     public function __construct($numeroDeJugadores, $numeroDeCartas) {
         $this->numeroDeJugadores = $numeroDeJugadores;
         $this->numeroDeCartas = $numeroDeCartas;
-        $baraja = new Baraja();
-
-        $baraja->crea_baraja();
-        $baraja->mezcla_baraja();
+        $this->turno = 0;
+        $this->arrayJugadores = [];
+    }
 
         for ($jugador = 1; $jugador <= $numeroDeJugadores; $jugador++) {
-            $arrayJugadores[$jugador] = array_splice($baraja->conjunto_cartas, 0, $numeroDeCartas);
+            $this->arrayJugadores[$jugador] = array_splice($baraja->conjunto_cartas, 0, $this->numeroDeCartas);
         }
 
-        $cartaEnMesa = array_shift($this->baraja->conjunto_cartas);
+        $this->cartaEnMesa = array_shift($baraja->conjunto_cartas);
         echo "<p>Carta sobre la mesa:</p>";
-        $cartaEnMesa->pinta_carta();
+        $this->cartaEnMesa->pinta_carta();
 
     public function jugar() {
-        $jugadorActual = $arrayJugadores[$turno];
+        $jugadorActual = $this->arrayJugadores[$turno];
         $manoActual = $jugadorActual->mano;
 
-        foreach ($manoActual as $carta) {
-            if($_GET['numeroTipocarta'] || $_GET['color'] == $carta->$numeroDeLaCarta || $carta->$colorDeCarta){
+        foreach ($cartas as $carta) {
+            if ($_GET['numeroTipocarta'] == $carta->numeroTipoCarta || $_GET['color'] == $carta->colorDeCarta) {
                 $cartaEnMesa = $carta;
-
-                $jugadorActual = eliminar_carta($carta);
-            } else{
+                $jugadorActual->eliminar_carta($carta);
+                $carta->pinta_carta();
+            }else{
                 $nuevaCartaRobada = array_shift($baraja->conjunto_cartas);
-                $jugadorActual = afegir_carta($nuevaCartaRobada);                
+                $jugadorActual->afegir_carta($nuevaCartaRobada);
+                $nuevaCartaRobada->pinta_carta();
             }
-            }
-            if (count($jugadorActual->cartas) == 0) {
-                echo "El jugador " . $jugadorActual . " ha ganado";
-            }            
+        }
+
+        if (count($jugadorActual->cartas) == 0) {
+            echo "El jugador " . $jugadorActual . " ha ganado";
         }
     }
-    }
+}
 ?>
