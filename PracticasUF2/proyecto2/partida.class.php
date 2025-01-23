@@ -39,7 +39,7 @@ class Partida {
                 $jugadorActual->eliminar_carta($carta);
                 $carta->pinta_carta();
 
-                cambiaTurno();
+                $this->cambiaTurno();
 
             }else{
                 $nuevaCartaRobada = array_shift($this->baraja->conjunto_cartas);
