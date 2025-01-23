@@ -18,7 +18,7 @@ class Partida {
         $this->turno = 0;
         $this->arrayJugadores = [];
 
-        $baraja = new Baraja();
+        $this->baraja = new Baraja();
 
         for ($jugador = 1; $jugador <= $numeroDeJugadores; $jugador++) {
             $this->arrayJugadores[$jugador] = array_splice($this->baraja->conjunto_cartas, 0, $this->numeroDeCartas);
@@ -29,8 +29,8 @@ class Partida {
         $this->cartaEnMesa->pinta_carta();        
     }
 
-    public function jugar() {
-        $jugadorActual;      
+    public function jugar() {     
+        $jugadorActual = $this->arrayJugadores[$this->turno];
         $manoActual = $jugadorActual->mano;
 
         foreach ($manoActual as $carta) {
@@ -39,11 +39,10 @@ class Partida {
                 $jugadorActual->eliminar_carta($carta);
                 $carta->pinta_carta();
 
-                for ($turno=0; $turno < $numeroDeJugadores; $turno++) { 
-                    $jugadorActual = $this->arrayJugadores[$turno];
-                }
+                cambiaTurno();
+
             }else{
-                $nuevaCartaRobada = array_shift($baraja->conjunto_cartas);
+                $nuevaCartaRobada = array_shift($this->baraja->conjunto_cartas);
                 $jugadorActual->afegir_carta($nuevaCartaRobada);
                 $nuevaCartaRobada->pinta_carta();
             }
@@ -51,6 +50,12 @@ class Partida {
 
         if (count($jugadorActual->manoActual) == 0) {
             echo "El jugador " . $jugadorActual . " ha ganado";
+        }
+    }
+
+    public function cambiaTurno(){
+        for ($turno=0; $turno < $this->numeroDeJugadores; $turno++) { 
+            $jugadorActual = $this->arrayJugadores[$turno];
         }
     }
 }
