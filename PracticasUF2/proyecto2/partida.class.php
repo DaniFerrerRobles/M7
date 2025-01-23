@@ -27,7 +27,6 @@ class Partida {
         $cartaEnMesa = array_shift($this->baraja->conjunto_cartas);
         echo "<p>Carta sobre la mesa:</p>";
         $cartaEnMesa->pinta_carta();
-    }
 
     public function jugar() {
         $jugadorActual = $arrayJugadores[$turno];
@@ -43,10 +42,10 @@ class Partida {
                 $jugadorActual = afegir_carta($nuevaCartaRobada);                
             }
             }
+            if (count($jugadorActual->cartas) == 0) {
+                echo "El jugador " . $jugadorActual . " ha ganado";
+            }            
         }
-
-        if (count($jugadorActual->cartas) == 0) {
-            echo "El jugador " . $jugadorActual . " ha ganado";
-        }
+    }
     }
 ?>
