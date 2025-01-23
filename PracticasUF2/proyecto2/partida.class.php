@@ -31,7 +31,6 @@ class Partida {
 
     public function guardarPartidaEnSesion() {
         $_SESSION['partida'] = [
-            'id' =>$this->id,
             'numeroDeJugadores' => $this->numeroDeJugadores,
             'numeroDeCartas' => $this->numeroDeCartas,
             'turno' => $this->turno,
