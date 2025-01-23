@@ -20,9 +20,6 @@ class Partida {
             $this->arrayJugadores = [];
             $this->baraja = new Baraja();
 
-            for ($jugador = 1; $jugador <= $numeroDeJugadores; $jugador++) {
-                $this->arrayJugadores[$jugador] = array_splice($this->baraja->conjunto_cartas, 0, $this->numeroDeCartas);
-            }    
 
             $this->cartaEnMesa = array_shift($this->baraja->conjunto_cartas);
             echo "<p>Carta sobre la mesa:</p>";
@@ -34,6 +31,7 @@ class Partida {
 
     public function guardarPartidaEnSesion() {
         $_SESSION['partida'] = [
+            'id' =>$this->id,
             'numeroDeJugadores' => $this->numeroDeJugadores,
             'numeroDeCartas' => $this->numeroDeCartas,
             'turno' => $this->turno,
